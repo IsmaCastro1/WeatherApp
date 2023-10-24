@@ -1,0 +1,20 @@
+﻿@model WeatherAppV2.WebApp.Models.ViewModels.VMMunicipalityMenu
+@{
+	ViewData["Title"] = "Municipalities";
+}
+
+    <div class="container w-50 text-center">
+        <form asp-action="MunicipalityMenu" asp-controller="Municipality" method="post">
+
+            <h1>Listado de Municipios de @Model.province.NombreProvincia </h1>
+
+            <Select class="form-select" name="idprovince">
+                @foreach (var municipality in Model.municipalites)
+                {
+                    <option value="@municipality.CodGeo"> @municipality.Nombre </option>
+                }
+            </Select>
+
+        </form>
+    </div>
+

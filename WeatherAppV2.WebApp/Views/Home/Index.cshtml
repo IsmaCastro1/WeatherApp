@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WeatherAppV2.Domain.Province>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container w-50 text-center"> 
+    <form asp-action="MunicipalityMenu" asp-controller="Municipality" method="post">
+
+        <h1>Listado de Provincias</h1>
+
+        <Select class="form-select mb-3" name="idprovince">
+            @foreach (var province in Model)
+            {
+                <option value="@province.Codprov"> @province.NombreProvincia </option>
+            }
+        </Select>
+
+        <button type="submit" class="btn btn-primary"> BUSCAR </button>
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
