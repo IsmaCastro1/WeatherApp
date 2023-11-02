@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WeatherAppV2.Domain;
+using WeatherAppV2.Domain.Entities.EProvince;
 using WeatherAppV2.Domain.Interfaces;
 using WeatherAppV2.Infrastructure.Data;
 
 namespace WeatherAppV2.Infrastructure.Repositories;
-    public class ProvinceRepository : IProvinceRepository
+public class ProvinceRepository : IProvinceRepository
     {
         private readonly WeatherDbContext _weatherDbContext;
 

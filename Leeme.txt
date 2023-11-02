@@ -1,0 +1,25 @@
+He creado un endpoint que recibe la temperatura en tiempo real desde una rapsberry pi usando el sensor DHT11.
+
+Script -->
+
+import Adafruit_DHT
+import time
+import requests
+
+SENSOR_DHT = Adafruit_DHT.DHT11
+PIN_DHT = 4
+
+DHT_PIN = 4  # GPIO pin donde está conectado el sensor DHT11
+SERVER_URL = "http://192.168.1.24:5036/temperature"
+while True:
+    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT_PIN)
+    if humidity is not None and temperature is not None:
+        data = {"temperatura": temperature}
+        response = requests.post(SERVER_URL,json=data)
+    else:
+        print("Error al leer el sensor DHT11.");
+time.sleep(1);
+        
+
+
+Y para mostrar la temperatura en tiempo real voy a usar signalr (Estoy en proceso...)

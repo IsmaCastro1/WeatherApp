@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WeatherAppV2.Domain;
+using WeatherAppV2.Domain.Entities.EMunicipality;
 using WeatherAppV2.Domain.Interfaces;
 using WeatherAppV2.Infrastructure.Data;
 
@@ -23,5 +23,10 @@ public class MunicipalityRepository : IMunicipalityRepository
         return await _weatherDbContext.Municipalities.Where(
                 Municipality => Municipality.Codprov == codprov
             ).ToListAsync();
+    }
+
+    public async Task<Municipality> GetMunicipalityById(string Codigoine)
+    {
+        return await _weatherDbContext.Municipalities.FindAsync(Codigoine);
     }
 }

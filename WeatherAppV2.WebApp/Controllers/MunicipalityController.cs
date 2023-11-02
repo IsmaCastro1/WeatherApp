@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Mvc;
+using WeatherAppV2.Domain.Entities.EMunicipality;
 using WeatherAppV2.Domain.Interfaces;
+using WeatherAppV2.Domain.Models;
 using WeatherAppV2.WebApp.Models.ViewModels;
 
 namespace WeatherAppV2.WebApp.Controllers
@@ -8,11 +11,12 @@ namespace WeatherAppV2.WebApp.Controllers
     {
         private readonly IMunicipalityRepository _municipalityRepository;
         private readonly IProvinceRepository _provinceRepository;
-
-        public MunicipalityController(IMunicipalityRepository municipalityRepository, IProvinceRepository provinceRepository)
+        private readonly ITemperatureService _temperatureService;
+        public MunicipalityController(IMunicipalityRepository municipalityRepository, IProvinceRepository provinceRepository, ITemperatureService temperatureService)
         {
             _municipalityRepository = municipalityRepository;
             _provinceRepository = provinceRepository;
+            _temperatureService = temperatureService;
         }
 
         [HttpPost]
@@ -26,5 +30,13 @@ namespace WeatherAppV2.WebApp.Controllers
 
             return View(municipalityMenu);
         }
+        
+        [HttpPost]
+        public async Task<IActionResult> ShowTemperature (String codgeo)
+        {
+            int temp =  await _temperatureService.GetMunicipalityTemperature(codgeo);
+            return View(temp);
+        }
+
     }
 }

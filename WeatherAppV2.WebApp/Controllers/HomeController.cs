@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using WeatherAppV2.Domain.Interfaces;
 using WeatherAppV2.WebApp.Models;
+using WeatherAppV2.WebApp.Models.services;
+using WeatherAppV2.WebApp.Models.ViewModels;
 
 namespace WeatherAppV2.WebApp.Controllers
 {
@@ -9,17 +12,25 @@ namespace WeatherAppV2.WebApp.Controllers
     {
 
         #region ---------------------- VARIABLES ZONE -------------------------------
-        private readonly ILogger<HomeController> _logger;
         private readonly IProvinceRepository _provinceRepository;
+        private readonly IHubContext<TemperatureHub> _hubContext;
 
-        public HomeController(ILogger<HomeController> logger, IProvinceRepository provinceRepository)
+        public HomeController( IProvinceRepository provinceRepository , IHubContext<TemperatureHub> hubContext)
         {
-            this._logger = logger;
             this._provinceRepository = provinceRepository;
+            this._hubContext = hubContext;
         }
         #endregion
 
         #region ----------------------------- VIEW ENGINE -------------------------------------
+
+        [HttpPost("Temperature")]
+        public async Task<IActionResult> TemperatureNow([FromBody] TemperatureNow temperature) 
+        {
+            await _hubContext.Clients.All.SendAsync("Receive", temperature.Temperatura);
+            return Ok();
+        }
+
         public async Task<IActionResult> Index()
         {
             return View(await _provinceRepository.GetAllProvinces());
