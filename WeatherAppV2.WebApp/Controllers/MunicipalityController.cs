@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using WeatherAppV2.Domain.Entities.EMunicipality;
 using WeatherAppV2.Domain.Interfaces;
 using WeatherAppV2.Domain.Models;
+using WeatherAppV2.WebApp.Domain.Models;
 using WeatherAppV2.WebApp.Models.ViewModels;
 
 namespace WeatherAppV2.WebApp.Controllers
@@ -34,8 +35,17 @@ namespace WeatherAppV2.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> ShowTemperature (String codgeo)
         {
-            int temp =  await _temperatureService.GetMunicipalityTemperature(codgeo);
-            return View(temp);
+            MessageReponse<int> temp =  await _temperatureService.GetMunicipalityTemperature(codgeo);
+
+            if (temp.code.Equals("OK"))
+            {
+                return View(temp.data);
+            }
+            else
+            {
+                return RedirectToAction("Index","Home");
+            }
+            
         }
 
     }
