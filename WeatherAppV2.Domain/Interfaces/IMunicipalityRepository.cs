@@ -10,4 +10,7 @@ public interface IMunicipalityRepository
 {
     Task<List<Municipality>> GetMunicipalityByCodProv(String codprov);
     Task<Municipality> GetMunicipalityById(String Codigoine);
+
+    Task<Municipality> GetMunicipalityByCodGeo(String codgeo);
+
 }

@@ -13,6 +13,7 @@ namespace WeatherAppV2.WebApp.Controllers
         private readonly IMunicipalityRepository _municipalityRepository;
         private readonly IProvinceRepository _provinceRepository;
         private readonly ITemperatureService _temperatureService;
+
         public MunicipalityController(IMunicipalityRepository municipalityRepository, IProvinceRepository provinceRepository, ITemperatureService temperatureService)
         {
             _municipalityRepository = municipalityRepository;
@@ -35,18 +36,17 @@ namespace WeatherAppV2.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> ShowTemperature (String codgeo)
         {
-            MessageReponse<int> temp =  await _temperatureService.GetMunicipalityTemperature(codgeo);
+            MessageReponse<TemperatureRoot> temp =  await _temperatureService.GetMunicipalityTemperature(codgeo);
 
             if (temp.code.Equals("OK"))
             {
+                ViewData["municipality"] = await _municipalityRepository.GetMunicipalityByCodGeo(codgeo);
                 return View(temp.data);
             }
             else
             {
                 return RedirectToAction("Index","Home");
-            }
-            
+            }         
         }
-
     }
 }

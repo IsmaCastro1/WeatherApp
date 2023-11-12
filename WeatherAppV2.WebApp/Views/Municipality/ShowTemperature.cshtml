@@ -1,5 +1,27 @@
-﻿@model int
+﻿@model WeatherAppV2.Domain.Models.TemperatureRoot
+@using WeatherAppV2.Domain.Entities.EMunicipality
 
-<h1>
-	La Temperatura actual es: @Model °C
-</h1>
+@{
+	Municipality mun = (Municipality) ViewData["municipality"];
+	String stateSky = Model.stateSky.description;
+	String imgTemperature = "";
+	switch (stateSky)
+	{
+		case "Cubierto" :
+			imgTemperature = "/img/partly-cloudy-day.svg";
+			break;
+	}
+}
+
+<style>
+	.img{
+		width : 50px
+	}
+</style>
+
+<div class="d-flex justify-content-center">
+	<div class="container bg-white w-50 shadow rounded m-5 text-center">
+		<h3>@mun.Nombre</h3>
+		<b>@Model.temperatura_actual °C  <img src="@imgTemperature" class="img" /> </b>
+	</div>
+</div>

@@ -16,7 +16,7 @@ public class TemperatureService : ITemperatureService
 {
     private readonly String url = "https://www.el-tiempo.net/api/json/v2";
     private readonly HttpClient client = new HttpClient();
-    public async Task<MessageReponse<int>> GetMunicipalityTemperature(String codgeo)
+    public async Task<MessageReponse<TemperatureRoot>> GetMunicipalityTemperature(String codgeo)
     {
         try
         {
@@ -24,12 +24,11 @@ public class TemperatureService : ITemperatureService
             String geo = codgeo.ToCharArray()[0].ToString() + codgeo.ToCharArray()[1].ToString();
             String tempurl = url + "/provincias/" + geo + "/municipios/" + codgeo;
             temperatureRoot = await client.GetFromJsonAsync<TemperatureRoot>(tempurl);
-            Console.WriteLine(temperatureRoot.temperatura_actual);
-            return new MessageReponse<int> { data = Convert.ToInt32(temperatureRoot.temperatura_actual), code = "OK" };
+            return new MessageReponse<TemperatureRoot> { data = temperatureRoot, code = "OK" };
         }
         catch (Exception ex)
         {
-            return new MessageReponse<int> { code = "ERROR" , data = 0 };
+            return new MessageReponse<TemperatureRoot> { code = "ERROR" , data = null };
         }
     }
 }

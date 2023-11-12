@@ -18,6 +18,11 @@ public class MunicipalityRepository : IMunicipalityRepository
         _weatherDbContext = weatherDbContext;
     }
 
+    public async Task<Municipality> GetMunicipalityByCodGeo(string codgeo)
+    {
+        return await _weatherDbContext.Municipalities.FirstOrDefaultAsync(mun => mun.CodGeo == codgeo);
+    }
+
     public async Task<List<Municipality>> GetMunicipalityByCodProv(string codprov)
     {
         return await _weatherDbContext.Municipalities.Where(
@@ -29,4 +34,5 @@ public class MunicipalityRepository : IMunicipalityRepository
     {
         return await _weatherDbContext.Municipalities.FindAsync(Codigoine);
     }
+
 }
