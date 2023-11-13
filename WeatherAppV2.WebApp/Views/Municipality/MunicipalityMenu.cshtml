@@ -7,10 +7,10 @@
         
         <h1>Listado de Municipios de @Model.province.NombreProvincia </h1>
         <form asp-action="ShowTemperature" asp-controller="Municipality" method="post">
-            <Select class="form-select" name="codgeo">
+        <Select class="form-select" name="Codigoine">
                 @foreach (var municipality in Model.municipalites)
                 {
-                    <option value="@municipality.CodGeo"> @municipality.Nombre </option>
+                    <option value="@municipality.Codigoine"> @municipality.Nombre </option>
                 }
             </Select>
 

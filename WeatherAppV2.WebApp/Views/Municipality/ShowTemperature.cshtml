@@ -2,13 +2,24 @@
 @using WeatherAppV2.Domain.Entities.EMunicipality
 
 @{
-	Municipality mun = (Municipality) ViewData["municipality"];
 	String stateSky = Model.stateSky.description;
 	String imgTemperature = "";
 	switch (stateSky)
 	{
 		case "Cubierto" :
+			imgTemperature = "/img/cloudy.svg";
+			break;
+		case "Despejado" :
+			imgTemperature = "/img/clear-day.svg";
+			break;
+		case "Nubes altas" :
 			imgTemperature = "/img/partly-cloudy-day.svg";
+			break;
+		case "Poco nuboso" :
+			imgTemperature = "/img/partly-cloudy-day.svg";
+			break;
+		case "Cubierto con lluvia escasa":
+			imgTemperature = "/img/rain.svg";
 			break;
 	}
 }
@@ -17,11 +28,23 @@
 	.img{
 		width : 50px
 	}
+
+	.container-text{
+		font-size:xx-large
+	}
 </style>
 
-<div class="d-flex justify-content-center">
-	<div class="container bg-white w-50 shadow rounded m-5 text-center">
-		<h3>@mun.Nombre</h3>
-		<b>@Model.temperatura_actual °C  <img src="@imgTemperature" class="img" /> </b>
+<div class="d-flex justify-content-center w-100">
+	<div  class="container bg-white w-50 shadow rounded my-5 text-center">
+		<h3>@Model.municipio.Nombre</h3>
+		<b class="container-text">@Model.temperatura_actual °C  <img src="@imgTemperature" class="img" /> </b>
+		<b>@stateSky</b>
+		<div class="container shadow w-50">
+			<div class="container">
+				<p><b>Probabilidad lluvia:</b> @Model.precipitacion %</p>
+				<p><b>Humedad:</b> @Model.humedad %</p>
+			</div>			
+		</div>
+
 	</div>
 </div>

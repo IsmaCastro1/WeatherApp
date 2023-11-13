@@ -21,7 +21,7 @@ public class TemperatureService : ITemperatureService
         try
         {
             TemperatureRoot temperatureRoot;
-            String geo = codgeo.ToCharArray()[0].ToString() + codgeo.ToCharArray()[1].ToString();
+            String geo = codgeo.Substring(0,2);
             String tempurl = url + "/provincias/" + geo + "/municipios/" + codgeo;
             temperatureRoot = await client.GetFromJsonAsync<TemperatureRoot>(tempurl);
             return new MessageReponse<TemperatureRoot> { data = temperatureRoot, code = "OK" };

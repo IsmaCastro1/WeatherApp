@@ -34,13 +34,14 @@ namespace WeatherAppV2.WebApp.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> ShowTemperature (String codgeo)
+        public async Task<IActionResult> ShowTemperature (String Codigoine)
         {
-            MessageReponse<TemperatureRoot> temp =  await _temperatureService.GetMunicipalityTemperature(codgeo);
+            String idmun = Codigoine.Substring(0,5);
+
+            MessageReponse<TemperatureRoot> temp =  await _temperatureService.GetMunicipalityTemperature(idmun);
 
             if (temp.code.Equals("OK"))
             {
-                ViewData["municipality"] = await _municipalityRepository.GetMunicipalityByCodGeo(codgeo);
                 return View(temp.data);
             }
             else
