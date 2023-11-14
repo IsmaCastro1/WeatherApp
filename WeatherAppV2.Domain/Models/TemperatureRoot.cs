@@ -10,12 +10,19 @@ namespace WeatherAppV2.Domain.Models
 {
     public class TemperatureRoot
     {
-        public Municipality municipio { get; set; }
+		[JsonInclude]
+		public Municipality municipio { get; set; }
 
-        [JsonInclude]
+		[JsonInclude]
+		public StateSky stateSky { get; set; }
+
+		[JsonInclude]
         public String temperatura_actual { get; set; }
 
-        [JsonInclude]
+		[JsonInclude]
+		public Temperaturas temperaturas { get; set; }
+
+		[JsonInclude]
         public String humedad { get; set; }
 
         [JsonInclude]
@@ -28,7 +35,8 @@ namespace WeatherAppV2.Domain.Models
         public String lluvia { get; set; }
 
         [JsonInclude]
-        public StateSky stateSky { get; set; }
+        public Pronostico pronostico { get; set; }    
+
 
     }
 
@@ -37,5 +45,27 @@ namespace WeatherAppV2.Domain.Models
         [JsonInclude]
         public String description { get; set; }
     }
+
+    public class Temperaturas
+    {
+        [JsonInclude]
+        public String max { get; set; }
+
+        [JsonInclude]
+        public String min { get; set; }
+    }
+        
+    public class Pronostico
+    {
+        [JsonInclude]
+        public Hoy hoy { get; set; }
+
+    }
+    public class Hoy
+    {
+        [JsonInclude]
+        public List<String> temperatura { get; set; }
+
+	}
 
 }

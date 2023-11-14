@@ -3,7 +3,7 @@
 	ViewData["Title"] = "Municipalities";
 }
 
-    <div class="container w-50 text-center">
+<div class="container bg-white shadow rounded-1 bloque mt-5 text-center">
         
         <h1>Listado de Municipios de @Model.province.NombreProvincia </h1>
         <form asp-action="ShowTemperature" asp-controller="Municipality" method="post">
@@ -14,7 +14,7 @@
                 }
             </Select>
 
-            <button class="btn btn-primary mt-3"> Buscar </button>
+            <button class="btn btn-dark mt-3"> Buscar </button>
 
         </form>
     </div>

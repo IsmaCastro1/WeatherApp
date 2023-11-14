@@ -1,26 +1,33 @@
-﻿@model IEnumerable<WeatherAppV2.Domain.Entities.EProvince.Province>
-@{
-    ViewData["Title"] = "Home";
-}
+﻿
 
-<div class="container w-50 text-center"> 
-    <form asp-action="MunicipalityMenu" asp-controller="Municipality" method="post">
+<div class="d-flex justify-content-center">
 
-        <h1>Listado de Provincias</h1>
+		<div class="container bg-white shadow rounded-1 bloque mt-5 text-center">
+			<h1 class="mt-4">Bienvenido a <i class="fa-solid fa-cloud"> Weather </i></h1>
 
-        <Select class="form-select mb-3" name="idprovince">
-            @foreach (var province in Model)
-            {
-                <option value="@province.Codprov"> @province.NombreProvincia </option>
-            }
-        </Select>
+			<div class="container h-75 mt-5">
+				<div class="d-flex justify-content-center h-100">
 
-        <button type="submit" class="btn btn-primary"> BUSCAR </button>
+					<div class="container border border-1 h-100 mx-2">
+						<h5 class="mt-3"><b>Busca la temperatura actual de cualquier lugar de España</b></h5>
+						<div class="mb-5"></div>
+						<div class="mb-5 mt-5"></div>
+						<a class="btn btn-dark mt-5" asp-controller="Province" asp-action="Index" > Ver Temperatura </a>
+					</div>
 
-    </form>
+
+					<div class="container border border-1 h-100">
+						<h5 class="mt-3"><b> Inicia sesion para guardar tus lugares favoritos </b></h5>					
+						<div class="mb-5"></div>
+						<div class="mb-5 mt-5"></div>
+						<a class="btn btn-dark mt-5" asp-controller="User" asp-action="Login"> Iniciar Sesion </a>
+						<a class="btn btn-dark mt-5" asp-controller="User" asp-action="Register"> Registrarse </a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
 </div>
-
-
-
 
 

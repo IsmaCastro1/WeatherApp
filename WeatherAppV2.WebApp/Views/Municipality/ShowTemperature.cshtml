@@ -21,7 +21,12 @@
 		case "Cubierto con lluvia escasa":
 			imgTemperature = "/img/rain.svg";
 			break;
+		case "Muy nuboso":
+			imgTemperature = "/img/cloudy.svg";
+			break;
 	}
+
+	String time = DateTime.Now.ToString().Substring(0,16);
 }
 
 <style>
@@ -34,17 +39,22 @@
 	}
 </style>
 
-<div class="d-flex justify-content-center w-100">
-	<div  class="container bg-white w-50 shadow rounded my-5 text-center">
-		<h3>@Model.municipio.Nombre</h3>
+
+
+<div class="d-flex justify-content-center">
+	<div class="container bg-white shadow rounded-1 bloque2 mt-5 text-center">
+		<h3 class="mt-5">@Model.municipio.Nombre</h3>
+		<p><b>@time</b></p>
 		<b class="container-text">@Model.temperatura_actual °C  <img src="@imgTemperature" class="img" /> </b>
 		<b>@stateSky</b>
-		<div class="container shadow w-50">
+		<p> <b>Max:</b> @Model.temperaturas.max °C <b>  Min:</b> @Model.temperaturas.min °C </p>
+
+		<div class="container shadow w-50 mt-5">
 			<div class="container">
 				<p><b>Probabilidad lluvia:</b> @Model.precipitacion %</p>
 				<p><b>Humedad:</b> @Model.humedad %</p>
-			</div>			
+				<p><b>Viento:</b> @Model.viento km/h</p>
+			</div>						
 		</div>
-
 	</div>
 </div>

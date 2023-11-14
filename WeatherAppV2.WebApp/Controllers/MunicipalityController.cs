@@ -38,6 +38,8 @@ namespace WeatherAppV2.WebApp.Controllers
         {
             String idmun = Codigoine.Substring(0,5);
 
+            Console.WriteLine(idmun);
+
             MessageReponse<TemperatureRoot> temp =  await _temperatureService.GetMunicipalityTemperature(idmun);
 
             if (temp.code.Equals("OK"))

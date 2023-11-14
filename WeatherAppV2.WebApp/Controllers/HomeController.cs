@@ -1,49 +1,12 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-using WeatherAppV2.Domain.Interfaces;
-using WeatherAppV2.WebApp.Models;
-using WeatherAppV2.WebApp.Models.services;
-using WeatherAppV2.WebApp.Models.ViewModels;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WeatherAppV2.WebApp.Controllers
 {
-    public class HomeController : Controller
-    {
-
-        #region ---------------------- VARIABLES ZONE -------------------------------
-        private readonly IProvinceRepository _provinceRepository;
-        private readonly IHubContext<TemperatureHub> _hubContext;
-
-        public HomeController( IProvinceRepository provinceRepository , IHubContext<TemperatureHub> hubContext)
-        {
-            this._provinceRepository = provinceRepository;
-            this._hubContext = hubContext;
-        }
-        #endregion
-
-        #region ----------------------------- VIEW ENGINE -------------------------------------
-
-        [HttpPost("Temperature")]
-        public async Task<IActionResult> TemperatureNow([FromBody] TemperatureNow temperature) 
-        {
-            await _hubContext.Clients.All.SendAsync("Receive", temperature.Temperatura);
-            return Ok();
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            return View(await _provinceRepository.GetAllProvinces());
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-        #endregion
-   
-
-    
-    }
+	public class HomeController : Controller
+	{
+		public IActionResult Index()
+		{
+			return View();
+		}
+	}
 }
