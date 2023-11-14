@@ -11,8 +11,8 @@ namespace WeatherAppV2.Domain.Entities.EUser;
 public class Users_Password
 {
     [Key]
-    int IdUser { get; set; }
-    String password { get; set; }
+    public int IdUser { get; set; }
+    public String password { get; set; }
 
     [ForeignKey("IdUser")]
     public virtual User User { get; set; }

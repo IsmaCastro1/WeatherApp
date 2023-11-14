@@ -17,7 +17,7 @@ builder.Services.AddDbContext<WeatherDbContext>(options =>
 //Repositories
 builder.Services.AddScoped<IProvinceRepository, ProvinceRepository>();
 builder.Services.AddScoped<IMunicipalityRepository, MunicipalityRepository>();
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,16 +1,50 @@
-﻿<div class="d-flex justify-content-center">
+﻿@model WeatherAppV2.WebApp.Models.ViewModels.UserView
+
+<div class="d-flex justify-content-center">
 
 	<div class="container bg-white shadow rounded-1 bloque mt-5 text-center">
 
 		<h1 class="mt-5"> REGISTRO </h1>
 
-		nombre,apellido,email,usuario
+		<div class="container w-75">
+			<form asp-action="Register">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+				<div class="">
+					<label class="form-label" asp-for="Name"></label>
+					<input type="text" class="form-control" asp-for="Name">
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
 
+				<div class="">
+					<label class="form-label" asp-for="LasName"></label>
+					<input type="text" class="form-control" asp-for="LasName">
+					<span asp-validation-for="LasName" class="text-danger"></span>
+				</div>
 
+				<div class="">
+					<label class="form-label" asp-for="Email"></label>
+					<input type="email" class="form-control" asp-for="Email">
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
 
+				<div class="">
+					<label class="form-label" asp-for="Username"></label>
+					<input type="text" class="form-control" asp-for="Username">
+					<span asp-validation-for="Username" class="text-danger"></span>
+				</div>
 
+				<div class="">
+					<label class="form-label" asp-for="Password"></label>
+					<input type="password" class="form-control" asp-for="Password">
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
 
+				<button type="submit" class="btn btn-dark mt-3"> Registrarse </button>
+
+			</form>
+		</div>
+		
 	</div>
 
 </div>

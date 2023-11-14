@@ -18,4 +18,5 @@ public class User
     public string? Email { get; set; }
     [MaxLength(50)]
     public string? Username { get; set; }
+
 }
