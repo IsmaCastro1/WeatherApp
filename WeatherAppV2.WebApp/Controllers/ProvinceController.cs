@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using WeatherAppV2.Domain.Interfaces;
@@ -26,13 +27,16 @@ namespace WeatherAppV2.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _provinceRepository.GetAllProvinces());
-        }
+            try
+            {
+                UserView userlog = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));
+                ViewBag.user = userlog;
+            }
+            catch (Exception ex)
+            {
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            }
+            return View(await _provinceRepository.GetAllProvinces());
         }
         #endregion
    

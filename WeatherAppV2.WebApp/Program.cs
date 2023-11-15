@@ -28,6 +28,17 @@ builder.Services.AddSignalR();
 builder.Services.AddScoped<ITemperatureService, TemperatureService>();
 
 
+//Servicio Cookie Sesion
+builder.Services.AddSession(
+    (SessionOptions options) =>
+    {
+        options.Cookie.HttpOnly = true;
+        options.Cookie.MaxAge = new TimeSpan(1, 0, 0);
+    }
+);
+
+
+
 var app = builder.Build();
 
 using(var scope = app.Services.CreateScope())
@@ -50,6 +61,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.UseEndpoints(endpoints => {
     app.MapHub<TemperatureHub>("/Temperature");

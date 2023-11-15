@@ -4,7 +4,9 @@ namespace WeatherAppV2.WebApp.Models.ViewModels;
 
 public class UserView
 {
-	[Required(ErrorMessage = "El Nombre es obligatorio")]
+    public int id { get; set; }
+
+    [Required(ErrorMessage = "El Nombre es obligatorio")]
 	[MinLength(4, ErrorMessage = "Debe tener minimo 4 caracteres")]
 	[MaxLength(50, ErrorMessage = "Debe tener maximo 50 caracteres")]
 	public string? Name { get; set; }

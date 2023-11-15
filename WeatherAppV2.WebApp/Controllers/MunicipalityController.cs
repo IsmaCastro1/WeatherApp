@@ -1,4 +1,5 @@
 ﻿using System.Reflection.Metadata.Ecma335;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using WeatherAppV2.Domain.Entities.EMunicipality;
 using WeatherAppV2.Domain.Interfaces;
@@ -24,6 +25,15 @@ namespace WeatherAppV2.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> MunicipalityMenu(String idprovince)
         {
+            try
+            {
+                UserView userlog = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));
+                ViewBag.user = userlog;
+            }
+            catch (Exception ex)
+            {
+
+            }
             VMMunicipalityMenu municipalityMenu = new VMMunicipalityMenu
             {
                 municipalites = await _municipalityRepository.GetMunicipalityByCodProv(idprovince),
@@ -36,6 +46,15 @@ namespace WeatherAppV2.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> ShowTemperature (String Codigoine)
         {
+            try
+            {
+                UserView userlog = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));
+                ViewBag.user = userlog;
+            }
+            catch (Exception ex)
+            {
+
+            }
             String idmun = Codigoine.Substring(0,5);
 
             Console.WriteLine(idmun);

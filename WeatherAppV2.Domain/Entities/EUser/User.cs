@@ -19,4 +19,6 @@ public class User
     [MaxLength(50)]
     public string? Username { get; set; }
 
+	public virtual Users_Password Users_Password { get; set; }
+
 }
