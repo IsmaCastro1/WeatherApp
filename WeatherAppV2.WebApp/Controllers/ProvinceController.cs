@@ -27,15 +27,6 @@ namespace WeatherAppV2.WebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            try
-            {
-                UserView userlog = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));
-                ViewBag.user = userlog;
-            }
-            catch (Exception ex)
-            {
-
-            }
             return View(await _provinceRepository.GetAllProvinces());
         }
         #endregion

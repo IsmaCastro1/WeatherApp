@@ -4,7 +4,6 @@ using WeatherAppV2.WebApp.Models.ViewModels;
 using WeatherAppV2.Domain.Entities.EUser;
 using System.Text.Json;
 using WeatherAppV2.Domain.Models;
-using WeatherAppV2.Infrastructure.Services;
 using WeatherAppV2.WebApp.Domain.Models;
 
 namespace WeatherAppV2.WebApp.Controllers
@@ -25,13 +24,6 @@ namespace WeatherAppV2.WebApp.Controllers
         #region ------------ REGISTER -----------------------
         public IActionResult Register()
 		{
-            try
-            {
-                UserView userlog = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));
-                ViewBag.user = userlog;
-            }
-            catch (Exception ex){}
-
             return View();
 		}
 		[HttpPost]
@@ -55,13 +47,6 @@ namespace WeatherAppV2.WebApp.Controllers
         #region ------------------- LOGIN --------------------
         public IActionResult Login()
 		{
-            try
-            {
-                UserView userlog = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));
-                ViewBag.user = userlog;
-            }
-            catch (Exception ex){}
-
             return View();
 		}
 		[HttpPost]
@@ -84,7 +69,6 @@ namespace WeatherAppV2.WebApp.Controllers
         #region ---------------------- USER PANEL ------------------
         public async Task<IActionResult> UserPanel()
 		{
-
 			try
 			{
                 UserView user = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));

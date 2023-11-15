@@ -1,5 +1,13 @@
-﻿@{
-    var user = ViewBag.user;
+﻿@using System.Text.Json;
+@using WeatherAppV2.WebApp.Models.ViewModels
+
+@{
+    UserView user = null;
+    try
+    {
+       user = JsonSerializer.Deserialize<UserView>(Context.Session.GetString("userdata"));
+    }catch(Exception ex){}
+
 }
 
 <!DOCTYPE html>
@@ -37,6 +45,11 @@
             width: 25vh;
         }
 
+        .bloqueuser {
+            height: 65vh;
+            width: 70vh;
+        }
+
         .profile-picture {
             width: 30px;
             height: 30px;
@@ -63,7 +76,6 @@
         .temperaturefont{
             font-size:20px;
         }
-
     </style>
 
     <header>
