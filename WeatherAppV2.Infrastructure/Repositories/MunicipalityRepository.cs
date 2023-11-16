@@ -35,4 +35,8 @@ public class MunicipalityRepository : IMunicipalityRepository
         return await _weatherDbContext.Municipalities.FindAsync(Codigoine);
     }
 
+    public async Task<List<Popular_Municipalities>> GetPopularMunicipalities()
+    {
+        return await _weatherDbContext.popular_Municipalities.Include(m => m.municipality).ToListAsync();
+    }
 }

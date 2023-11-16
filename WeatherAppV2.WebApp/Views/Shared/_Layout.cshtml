@@ -90,13 +90,17 @@
                         <div class="container text-center">
                             <h2 id="temp" class="text-white temperaturefont"></h2>
                         </div>
-                        <div class="container text-center">
+                        <div class="container text-center mt-1">
                             <a href="@Url.Action("UserPanel", "User")" class="nolink">
                                 <div class="profile-picture">
                                     <span class="initials">@user.Username.Substring(0,1)</span>
                                 </div>
                             </a>
-                        </div>                     
+                        </div>
+
+                        <div class="container text-center">
+                            <a class="btn btn-danger" asp-action="LogOut" asp-controller="User"> <i class="fa-solid fa-right-from-bracket"></i></a>
+                        </div>
                     </div>
                     
                 }               

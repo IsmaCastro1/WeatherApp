@@ -1,4 +1,14 @@
-﻿
+﻿@using System.Text.Json;
+@using WeatherAppV2.WebApp.Models.ViewModels
+@{
+	UserView user = null;
+	try
+	{
+		user = JsonSerializer.Deserialize<UserView>(Context.Session.GetString("userdata"));
+	}
+	catch (Exception ex) { }
+
+}
 
 <div class="d-flex justify-content-center">
 
@@ -6,25 +16,39 @@
 			<h1 class="mt-4">Bienvenido a <i class="fa-solid fa-cloud"> Weather </i></h1>
 
 			<div class="container h-75 mt-5">
+
+
+			@if (user == null)
+			{
 				<div class="d-flex justify-content-center h-100">
 
 					<div class="container border border-1 h-100 mx-2">
 						<h5 class="mt-3"><b>Busca la temperatura actual de cualquier lugar de España</b></h5>
 						<div class="mb-5"></div>
 						<div class="mb-5 mt-5"></div>
-						<a class="btn btn-dark mt-5" asp-controller="Province" asp-action="Index" > Ver Temperatura </a>
+						<a class="btn btn-dark mt-5" asp-controller="Province" asp-action="Index"> Ver Temperatura </a>
 					</div>
 
 
 					<div class="container border border-1 h-100">
-					<h5 class="mt-3"><b> Inicia sesión para guardar tus lugares favoritos </b></h5>
-					<div class="mb-5"></div>
+						<h5 class="mt-3"><b> Inicia sesión para guardar tus lugares favoritos </b></h5>
+						<div class="mb-5"></div>
 						<div class="mb-5 mt-5"></div>
-					<a class="btn btn-dark mt-5" asp-controller="User" asp-action="Login"> Iniciar sesión </a>
+						<a class="btn btn-dark mt-5" asp-controller="User" asp-action="Login"> Iniciar sesión </a>
 						<a class="btn btn-dark mt-5" asp-controller="User" asp-action="Register"> Registrarse </a>
 					</div>
 
 				</div>
+			}else{
+
+				<div class="container border border-1 h-100 mx-2">
+					<h5 class="mt-3"><b>Busca la temperatura actual de cualquier lugar de España</b></h5>
+					<div class="mb-5"></div>
+					<div class="mb-5 mt-5"></div>
+					<a class="btn btn-dark mt-5" asp-controller="Province" asp-action="Index"> Ver Temperatura </a>
+				</div>
+			}
+			
 			</div>
 		</div>
 

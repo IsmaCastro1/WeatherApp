@@ -5,6 +5,7 @@ using WeatherAppV2.Domain.Entities.EUser;
 using System.Text.Json;
 using WeatherAppV2.Domain.Models;
 using WeatherAppV2.WebApp.Domain.Models;
+using WeatherAppV2.Infrastructure.Services;
 
 namespace WeatherAppV2.WebApp.Controllers
 {
@@ -13,11 +14,13 @@ namespace WeatherAppV2.WebApp.Controllers
 
 		private readonly IUserRepository _userRepository;
         private readonly ITemperatureService _temperatureService;
+		private readonly HashPasswordService _hashPasswordService;
 
         public UserController(IUserRepository userRepository, ITemperatureService temperatureService)
         {
             this._userRepository = userRepository;
             this._temperatureService = temperatureService;
+			this._hashPasswordService = new HashPasswordService();
         }
 
 
@@ -37,7 +40,7 @@ namespace WeatherAppV2.WebApp.Controllers
 			}
 
 			User entityuser = new User { Email = user.Email, LasName = user.LasName, Name = user.Name, Username = user.Username };
-			Users_Password entity_users_Password = new Users_Password { User = entityuser, password = user.Password };
+			Users_Password entity_users_Password = new Users_Password { User = entityuser, password = _hashPasswordService.HashPassword(user.Password)};
 			await _userRepository.InsertUser(entity_users_Password);
 
 			return RedirectToAction("Login");
@@ -54,7 +57,7 @@ namespace WeatherAppV2.WebApp.Controllers
 		{
             User user = await _userRepository.GetUserByUsername(username);
 
-			if (user == null || !user.Users_Password.password.Equals(password))
+			if (user == null || !_hashPasswordService.IsPasswordValid(password,user.Users_Password.password))
 			{
 				ViewData["ErrorLogin"] = "Usuario o Contraseña incorrectos";
 				return View();
@@ -102,5 +105,13 @@ namespace WeatherAppV2.WebApp.Controllers
 			
 		}
         #endregion ----------------------------------------------------
-    }
+    
+	
+		public IActionResult LogOut()
+		{
+			HttpContext.Session.Clear();
+            return RedirectToAction("Index","Home");
+		}
+
+	}
 }
