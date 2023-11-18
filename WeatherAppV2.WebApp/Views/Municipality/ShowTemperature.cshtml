@@ -1,5 +1,7 @@
 ﻿@model WeatherAppV2.Domain.Models.TemperatureRoot
 @using WeatherAppV2.Domain.Entities.EMunicipality
+@using System.Text.Json;
+@using WeatherAppV2.WebApp.Models.ViewModels
 
 @{
 	String stateSky = Model.stateSky.description;
@@ -27,7 +29,18 @@
 	}
 
 	String time = DateTime.Now.ToString().Substring(0,16);
+
+	UserView user = null;
+	try
+	{
+		user = JsonSerializer.Deserialize<UserView>(Context.Session.GetString("userdata"));
+	}
+	catch (Exception ex) { }
+
+
 }
+
+
 
 <style>
 	.container-text{
@@ -52,5 +65,12 @@
 				<p><b>Viento:</b> @Model.viento km/h</p>
 			</div>						
 		</div>
+
+
+			<form asp-action="MuniFavorite" asp-controller="User">
+				<button type="submit"><i class="fa-solid fa-heart" style="color: #f71d1d;"></i></button>
+				<input hidden name="Codigoine" value="@Model.municipio.Codigoine" />
+			</form>	
+				
 	</div>
 </div>

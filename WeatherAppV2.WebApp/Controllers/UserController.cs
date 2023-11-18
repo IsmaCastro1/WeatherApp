@@ -6,6 +6,7 @@ using System.Text.Json;
 using WeatherAppV2.Domain.Models;
 using WeatherAppV2.WebApp.Domain.Models;
 using WeatherAppV2.Infrastructure.Services;
+using WeatherAppV2.Domain.Entities.EMunicipality;
 
 namespace WeatherAppV2.WebApp.Controllers
 {
@@ -113,6 +114,30 @@ namespace WeatherAppV2.WebApp.Controllers
 			HttpContext.Session.Clear();
             return RedirectToAction("Index","Home");
 		}
+
+		public async Task<IActionResult> MuniFavorite(String Codigoine) {
+
+			try
+			{
+				UserView user = JsonSerializer.Deserialize<UserView>(HttpContext.Session.GetString("userdata"));
+
+				ViewBag.user = user;
+
+				if (user == null)
+				{
+					RedirectToAction("Login");
+				}
+
+				await _userRepository.InsertUserMunicipality(new User_Municipalities { CODIGOINE = Codigoine , IdUser = user.id});
+
+			}
+			catch (Exception ex) { 
+
+			}
+	
+			return RedirectToAction("UserPanel");
+		}
+
 
 	}
 }

@@ -18,8 +18,8 @@ public class User_Municipalities
     public string CODIGOINE { get; set; }
 
     [ForeignKey("IdUser")]
-    public User user { get; set; }
+    public virtual User user { get; set; }
 
     [ForeignKey("CODIGOINE")]
-    public Municipality municipality { get; set; }
+    public virtual Municipality municipality { get; set; }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WeatherAppV2.Domain.Entities.EMunicipality;
 
 namespace WeatherAppV2.Domain.Entities.EUser;
 
@@ -20,5 +21,6 @@ public class User
     public string? Username { get; set; }
 
 	public virtual Users_Password Users_Password { get; set; }
+	public virtual List<User_Municipalities> User_Municipalities { get; set; }
 
 }

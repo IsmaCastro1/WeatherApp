@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using WeatherAppV2.Domain.Entities.EMunicipality;
 using WeatherAppV2.Domain.Entities.EUser;
 using WeatherAppV2.Domain.Interfaces;
@@ -42,4 +43,12 @@ public class UserRepository : IUserRepository
 		 await _dbContext.SaveChangesAsync();
 		 return true;
 	}
+
+	public async Task<Boolean> InsertUserMunicipality(User_Municipalities user_Municipalities)
+	{
+		await _dbContext.User_Municipalities.AddAsync(user_Municipalities);
+		await _dbContext.SaveChangesAsync();
+		return true;
+	}
+
 }
