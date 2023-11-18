@@ -52,8 +52,9 @@ namespace WeatherAppV2.WebApp.Controllers
 		{
             return View();
 		}
+		
 		[HttpPost]
-		public async Task<IActionResult> Login(String username, String password)
+		public async Task<IActionResult> Login(String username, String password) 
 		{
             User user = await _userRepository.GetUserByUsername(username);
 

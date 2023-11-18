@@ -18,5 +18,56 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #E2E2E2;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23E2E2E2' cx='50' cy='0' r='50'/%3E%3Cg fill='%23d6d6d6' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23cbcbcb' cx='50' cy='100' r='50'/%3E%3Cg fill='%23c0c0c0' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%23b5b5b5' cx='50' cy='200' r='50'/%3E%3Cg fill='%23aaaaaa' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%239f9f9f' cx='50' cy='300' r='50'/%3E%3Cg fill='%23949494' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%23898989' cx='50' cy='400' r='50'/%3E%3Cg fill='%237f7f7f' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%23757575' cx='50' cy='500' r='50'/%3E%3Cg fill='%236a6a6a' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%23606060' cx='50' cy='600' r='50'/%3E%3Cg fill='%23575757' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%234d4d4d' cx='50' cy='700' r='50'/%3E%3Cg fill='%23444444' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%233a3a3a' cx='50' cy='800' r='50'/%3E%3Cg fill='%23313131' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23292929' cx='50' cy='900' r='50'/%3E%3Cg fill='%23202020' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23181818' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: contain;
+}
+
+.bloque {
+    height: 77vh;
+    width: 150vh;
+}
+
+.bloque2 {
+    height: 70vh;
+    width: 100vh;
+}
+
+.minibloque {
+    height: 15vh;
+    width: 25vh;
+}
+
+.bloqueuser {
+    height: 65vh;
+    width: 70vh;
+}
+
+.profile-picture {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.initials {
+    font-size: 20px;
+    color: #555;
+}
+
+.nolink {
+    text-decoration: none;
+}
+
+.img {
+    width: 50px
+}
+
+.temperaturefont {
+    font-size: 20px;
 }
