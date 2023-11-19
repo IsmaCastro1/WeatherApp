@@ -89,7 +89,6 @@ namespace WeatherAppV2.WebApp.Controllers
 
 				List<User_Municipalities> listuserfav = await _userRepository.GetUserMunicipalites(user.id);
 
-
 				foreach (User_Municipalities user_Municipalities in listuserfav)
                 {
                     MessageReponse<TemperatureRoot> temp = await _temperatureService.GetMunicipalityTemperature(user_Municipalities.CODIGOINE.Substring(0,5));
