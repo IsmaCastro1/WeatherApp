@@ -36,7 +36,7 @@ body {
 }
 
 .minibloque {
-    height: 15vh;
+    height: 17vh;
     width: 25vh;
 }
 
@@ -70,4 +70,9 @@ body {
 
 .temperaturefont {
     font-size: 20px;
+}
+
+.icomini{
+    width : 10px;
+    height : 20px;
 }

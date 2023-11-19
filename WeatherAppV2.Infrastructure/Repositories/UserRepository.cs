@@ -23,6 +23,15 @@ public class UserRepository : IUserRepository
 		this._dbContext = dbContext;
 	}
 
+	public async Task<bool> DeleteUserMunicipality(int id)
+	{
+		User_Municipalities user_Municipalities = await _dbContext.User_Municipalities.FindAsync(id);
+		var entity = _dbContext.User_Municipalities.Single(x => x.Id == id);
+		_dbContext.User_Municipalities.Remove(entity);
+		await _dbContext.SaveChangesAsync();
+		return true;
+	}
+
 	public async Task<User> GetUserByUsername(string username)
 	{
 		return await _dbContext.Users

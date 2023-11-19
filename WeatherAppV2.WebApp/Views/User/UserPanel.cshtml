@@ -5,6 +5,8 @@
 
 @{
 
+	int count = 0;
+
 	String SetImage(String stateSky)
 	{
 		switch (stateSky)
@@ -43,13 +45,23 @@
 		<h3 class="mt-5">Municipios Favoritos</h3>
 		<div class="d-flex justify-content-center mt-5">
 
-			@foreach (TemperatureRoot usermuni in ViewBag.UserMunicipalities)
+			@foreach (TemperatureRoot usermuni in ViewBag.UserMunicipalitiesData)
 			{
 				<div class="minibloque bg-white shadow text-center mx-1">
-					<b>@usermuni.municipio.Nombre</b>
+					<form id="favform" asp-action="DeleteMunFav" asp-controller="User">
+						<b>
+						   @usermuni.municipio.Nombre
+							<button type="submit" style="border: none; background: transparent;">
+								<i id="trash" class="fa-solid fa-trash fa-2xs" style="color: #ff0000;"></i>
+							</button>
+						</b>
+						<input type="hidden" value="@ViewBag.UserMunicipalities[@count].Id" name="idmun" />
+					</form>
 					<p> <b class="container-text">@usermuni.temperatura_actual °C  <img src="@SetImage(usermuni.stateSky.description)" class="img" /> </b></p>
 					<p><b>Max: </b> @usermuni.temperaturas.max <b>Min: </b> @usermuni.temperaturas.min</p>
 				</div>
+
+				count++;
 			}
 		</div>
 	</div>

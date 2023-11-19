@@ -14,4 +14,6 @@ public interface IUserRepository
 	Task<User> GetUserByUsername(string username);
 	Task<List<User_Municipalities>> GetUserMunicipalites(int iduser);
 	Task<Boolean> InsertUserMunicipality(User_Municipalities user_Municipalities);
+
+	Task<Boolean> DeleteUserMunicipality(int id);
 }

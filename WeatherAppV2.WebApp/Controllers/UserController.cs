@@ -87,7 +87,10 @@ namespace WeatherAppV2.WebApp.Controllers
 
                 List<TemperatureRoot> muntemperature = new List<TemperatureRoot>();
 
-		        foreach (User_Municipalities user_Municipalities in await _userRepository.GetUserMunicipalites(user.id))
+				List<User_Municipalities> listuserfav = await _userRepository.GetUserMunicipalites(user.id);
+
+
+				foreach (User_Municipalities user_Municipalities in listuserfav)
                 {
                     MessageReponse<TemperatureRoot> temp = await _temperatureService.GetMunicipalityTemperature(user_Municipalities.CODIGOINE.Substring(0,5));
                     temp.data.municipio = user_Municipalities.municipality;
@@ -95,7 +98,8 @@ namespace WeatherAppV2.WebApp.Controllers
                 }
 
 
-                ViewBag.UserMunicipalities = muntemperature;
+                ViewBag.UserMunicipalitiesData = muntemperature;
+				ViewBag.UserMunicipalities = listuserfav;
 
                 return View(user);
 				
@@ -135,6 +139,14 @@ namespace WeatherAppV2.WebApp.Controllers
 
 			}
 	
+			return RedirectToAction("UserPanel");
+		}
+
+
+		public async Task<IActionResult> DeleteMunFav(int idmun)
+		{
+			await _userRepository.DeleteUserMunicipality(idmun);
+
 			return RedirectToAction("UserPanel");
 		}
 
